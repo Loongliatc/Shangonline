@@ -1,28 +1,21 @@
 from django.db import models
 from datetime import datetime
 from orgs.models import OrgInfo,TeacherInfo
-from DjangoUeditor.models import UEditorField
 # Create your models here.
 class CourseInfo(models.Model):
     name = models.CharField(max_length=20,verbose_name="课程名称")
     desc = models.CharField(max_length=200,verbose_name="课程简介")
-    detail = UEditorField(verbose_name='课程详情', width=700, height=400, toolbars='full',
-                          imagePath='ueditor/images/', filePath='ueditor/files/',
-                          upload_settings={'imageMaxSizing': 1024000},
-                          default='')
-    level = models.CharField(choices=(('初级','初级'),('中级','中级'),('高级','高级')),max_length=5,verbose_name="课程难度",default='初级')
+    detail = models.TextField(verbose_name="课程详情")
+    level = models.CharField(choices=(('cj','初级'),('zj','中级'),('gj','高级')),max_length=5,verbose_name="课程难度",default='cj')
     stunum = models.IntegerField(default=0,verbose_name="学习人数")
     study_time = models.IntegerField(default=0,verbose_name="学习时长")
     lesson_num = models.IntegerField(default=0,verbose_name="章节数")
-    category = models.CharField(choices=(('前端','前端'),('后台','后台')),max_length=5,verbose_name="课程类别")
+    category = models.CharField(choices=(('qd','前端'),('ht','后台')),max_length=5,verbose_name="课程类别")
     click_num = models.IntegerField(default=0, verbose_name='点击数')
     love_num = models.IntegerField(default=0, verbose_name='收藏数')
     image = models.ImageField(upload_to='course/%y/%m',verbose_name="课程图片",max_length=100)
     orginfo = models.ForeignKey(OrgInfo,verbose_name="所属机构")
     teacherinfo = models.ForeignKey(TeacherInfo,verbose_name="所属讲师")
-    need_know = models.CharField(max_length=100,verbose_name="课程须知",null=True,blank=True)
-    teacher_say = models.CharField(max_length=200,verbose_name="老师告知",null=True,blank=True)
-    is_banner = models.BooleanField(default=False,verbose_name="是否轮播")
     add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
 
     def __str__(self):

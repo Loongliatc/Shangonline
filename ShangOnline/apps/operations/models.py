@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from users.models import UserProfiles
+from users.models import UserProfile
 from courses.models import CourseInfo
 # Create your models here.
 class UserAskInfo(models.Model):
@@ -17,7 +17,7 @@ class UserAskInfo(models.Model):
         verbose_name_plural = verbose_name
 
 class UserLoveInfo(models.Model):
-    userinfo = models.ForeignKey(UserProfiles,verbose_name="所属用户")
+    userinfo = models.ForeignKey(UserProfile,verbose_name="所属用户")
     love_id = models.IntegerField(verbose_name="收藏id")
     love_type = models.IntegerField(choices=((1,'收藏机构'),(2,'收藏课程'),(3,'收藏讲师')),verbose_name="收藏类别")
     love_status = models.BooleanField(default=False,verbose_name='收藏状态')
@@ -32,7 +32,7 @@ class UserLoveInfo(models.Model):
 
 
 class UserCourseInfo(models.Model):
-    userinfo = models.ForeignKey(UserProfiles, verbose_name="所属用户")
+    userinfo = models.ForeignKey(UserProfile, verbose_name="所属用户")
     courseinfo = models.ForeignKey(CourseInfo,verbose_name="所属课程")
     add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
 
@@ -59,7 +59,7 @@ class UserMessageInfo(models.Model):
 
 
 class UserCommentInfo(models.Model):
-    userinfo = models.ForeignKey(UserProfiles, verbose_name="所属用户")
+    userinfo = models.ForeignKey(UserProfile, verbose_name="所属用户")
     courseinfo = models.ForeignKey(CourseInfo,verbose_name="所属课程")
     comment_content = models.CharField(max_length=200,verbose_name="评论内容")
     add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")

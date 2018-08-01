@@ -14,21 +14,21 @@ import os,sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0,os.path.join(BASE_DIR,"apps"))
+sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
 sys.path.insert(0,os.path.join(BASE_DIR,'extra_apps'))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8up60=88uq(8+&99ov&wiuh)d^e^l^!(j3)%31p0&3y2o)rcug'
+SECRET_KEY = 'u$s#f1w6s=e^%^7gw(lla@9so&=3y_134wsc+ndbchim&#ma$o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'users.UserProfiles'
 
 # Application definition
 
@@ -42,9 +42,18 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'courses.apps.CoursesConfig',
     'orgs.apps.OrgsConfig',
-    'operations.apps.OperationsConfig'
+    'operations.apps.OperationsConfig',
+    'xadmin',
+    'crispy_forms',
+    'captcha',
 ]
 
+AUTH_USER_MODEL = 'users.UserProfile'
+
+# AUTHENTICATION_BACKENDS =(
+# #     'users.views.CustomBackend',
+# #     # 'django.contrib.auth.backends.ModelBackend',
+# # )
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,11 +93,11 @@ WSGI_APPLICATION = 'ShangOnline.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "onlineshang",
-        'USER': "root",
-        'PASSWORD': "root",
-        'HOST': "localhost",
-        'PORT': "3306",
+        'NAME': 'shangonline',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -136,3 +145,11 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/media')
+
+#仅配置了新浪邮箱
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'example@.com'  	#自己的邮箱
+EMAIL_HOST_PASSWORD = 'password'		#对应邮箱密码
+EMAIL_FROM = 'example@.com'  	#自己的邮箱
+# EMAIL_USE_TSL = False
