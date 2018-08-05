@@ -15,6 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-
+from .views import user_ask,user_love,user_comment,user_deletelove
 urlpatterns = [
+    url(r'^user_ask/$',user_ask,name='user_ask'),
+    url(r'^user_love/$', user_love, name='user_love'),
+    url(r'^user_comment/$', user_comment, name='user_comment'),
+    url(r'^user_deletelove/$', user_deletelove, name='user_deletelove'),
 ]

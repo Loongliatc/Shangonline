@@ -15,6 +15,10 @@ class UserProfile(AbstractUser):
     def __str__(self):
         return self.username
 
+    def get_msg_count(self):
+        from operations.models import UserMessageInfo
+        return  UserMessageInfo.objects.filter(userinfo=self.id,msg_status=False).count()
+
     class Meta:
         verbose_name = '用户信息'
         verbose_name_plural = verbose_name
@@ -22,7 +26,7 @@ class UserProfile(AbstractUser):
 class EmailVerify(models.Model):
     email = models.EmailField(max_length=100,verbose_name="邮箱")
     code = models.CharField(max_length=20,verbose_name="验证码")
-    send_type = models.CharField(choices=(('register','注册'),('forget','修改')),max_length=10,verbose_name='验证码类型')
+    send_type = models.CharField(choices=(('register','注册'),('forget','修改'),('changeemail','修改邮箱')),max_length=20,verbose_name='验证码类型')
     add_time = models.DateTimeField(default=datetime.now,verbose_name='发送时间')
 
     def __str__(self):

@@ -27,7 +27,7 @@ SECRET_KEY = 'u$s#f1w6s=e^%^7gw(lla@9so&=3y_134wsc+ndbchim&#ma$o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
+    'users.apps.UsersConfig',  #注册项目中创建的应用（APP
     'courses.apps.CoursesConfig',
     'orgs.apps.OrgsConfig',
     'operations.apps.OperationsConfig',
-    'xadmin',
+    'xadmin', #注册Xadmin
     'crispy_forms',
-    'captcha',
+    'captcha', #验证码依赖
+    'DjangoUeditor' #富文本编译器依赖
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -69,8 +70,7 @@ ROOT_URLCONF = 'ShangOnline.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,8 +93,8 @@ WSGI_APPLICATION = 'ShangOnline.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shangonline',
-        'USER': 'root',
+        'NAME': 'shangonline',  #数据库名称
+        'USER': 'root',     #mysql访问用户
         'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
@@ -124,9 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hans'
+LANGUAGE_CODE = 'zh-hans'  #配置语言
 
-TIME_ZONE = 'Asia/Shanghai'
+TIME_ZONE = 'Asia/Shanghai'   #时区
 
 USE_I18N = True
 
@@ -137,19 +137,26 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+#静态文件配置
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
 
+# STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
+#动态图片，文件存储位置配置
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/media')
 
-#仅配置了新浪邮箱
+#发送验证码需要的邮箱配置
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'example@.com'  	#自己的邮箱
-EMAIL_HOST_PASSWORD = 'password'		#对应邮箱密码
-EMAIL_FROM = 'example@.com'  	#自己的邮箱
-# EMAIL_USE_TSL = False
+EMAIL_HOST_USER = 'examp@163.com'   #改为自己的163邮箱
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_FROM = 'examp@163.com'  #改为自己的163邮箱
+# # EMAIL_USE_TSL = False
+#全局配置404和500页面，即简单错误处理
+handler403 = 'users.views.handler_403'
+handler404 = 'users.views.handler_404'
+handler500 = 'users.views.handler_500'

@@ -1,6 +1,4 @@
 #encoding=utf-8
-#__Author__: weesmile
-#__Date__: 2018-06-13
 import xadmin
 from .models import CityInfo,OrgInfo,TeacherInfo
 class CityInfoXadmin(object):
@@ -13,6 +11,7 @@ class OrgInfoXadmin(object):
     list_display = ['name','image','study_num','address','click_num','love_num','cityinfo','add_time']
     search_fields = ['name','image','study_num','address','click_num','love_num','cityinfo']
     list_filter = ['name','image','study_num','address','click_num','love_num','cityinfo__name','add_time']
+    style_fields = {'detail':'ueditor'}
 
 
 class TeacherInfoXadmin(object):

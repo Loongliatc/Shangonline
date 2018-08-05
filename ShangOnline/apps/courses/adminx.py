@@ -1,12 +1,11 @@
 #encoding=utf-8
-#__Author__: weesmile
-#__Date__: 2018-06-14
 import xadmin
 from .models import CourseInfo,LessonInfo,VideoInfo,SourceInfo
 class CourseInfoXadmin(object):
     list_display = ['name', 'desc','level','stunum','study_time','click_num','orginfo','teacherinfo','add_time']
     search_fields = ['name', 'desc','level','stunum','study_time','click_num','orginfo','teacherinfo']
     list_filter = ['name', 'desc','level','stunum','study_time','click_num','orginfo','teacherinfo','add_time']
+    style_fields = {'detail': 'ueditor'}
 
 
 class LessonInfoXadmin(object):

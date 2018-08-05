@@ -1,6 +1,4 @@
 #encoding=utf-8
-#__Author__: weesmile
-#__Date__: 2018-06-13
 import xadmin
 from .models import EmailVerify,Banner
 from xadmin import views

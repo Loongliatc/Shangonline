@@ -15,11 +15,35 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from .views import user_register,user_login,user_active,user_logout
+from .views import user_login,user_active,user_logout,user_forget,user_reset,user_info,user_changeimage,user_changeinfo,user_sendcode,user_changeemail,user_course,user_loveorg,user_loveteacher,user_lovecourse,user_message,user_readmessage,UserRegisterView
 urlpatterns = [
-    url(r'^user_register/$',user_register,name='user_register'),
+    url(r'^user_register/$',UserRegisterView.as_view(),name='user_register'),
     url(r'^user_login/$', user_login, name='user_login'),
     url(r'^active/(\w+)/$', user_active, name='user_active'),
     url(r'^user_logout/$', user_logout, name='user_logout'),
 
+    url(r'^user_forget/$', user_forget, name='user_forget'),
+    url(r'^user_reset/(\w+)/$', user_reset, name='user_reset'),
+
+    url(r'^user_info/$',user_info,name='user_info'),
+
+    url(r'^user_changeimage/$', user_changeimage, name='user_changeimage'),
+
+    url(r'^user_changeinfo/$', user_changeinfo, name='user_changeinfo'),
+
+    url(r'^user_sendcode/$', user_sendcode, name='user_sendcode'),
+
+    url(r'^user_changeemail/$', user_changeemail, name='user_changeemail'),
+
+    url(r'^user_course/$', user_course, name='user_course'),
+
+    url(r'^user_loveorg/$', user_loveorg, name='user_loveorg'),
+
+    url(r'^user_loveteacher/$', user_loveteacher, name='user_loveteacher'),
+
+    url(r'^user_lovecourse/$', user_lovecourse, name='user_lovecourse'),
+
+    url(r'^user_message/$', user_message, name='user_message'),
+
+    url(r'^user_readmessage/$', user_readmessage, name='user_readmessage'),
 ]
